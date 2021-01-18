@@ -1,11 +1,11 @@
-package org.northernjay.hospital_management_system;
+package org.northernjay.hospital_management_system.controller;
 
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "login", value = "/login")
+public class LoginController extends HttpServlet {
     private String message;
 
     public void init() {
