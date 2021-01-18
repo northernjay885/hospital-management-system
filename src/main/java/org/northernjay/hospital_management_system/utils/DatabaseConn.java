@@ -1,4 +1,4 @@
-package org.northernjay.hospital_management_system;
+package org.northernjay.hospital_management_system.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

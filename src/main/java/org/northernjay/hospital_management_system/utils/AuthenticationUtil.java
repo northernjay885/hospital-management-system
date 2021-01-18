@@ -1,12 +1,11 @@
-package org.northernjay.hospital_management_system.controller;
-
-import org.northernjay.hospital_management_system.DatabaseConn;
+package org.northernjay.hospital_management_system.utils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class AuthenticationUtil {
+public class AuthenticationUtil extends DatabaseUtil {
+
     public static Boolean isValid(String username, String password){
         Connection con = null;
         Statement myStmt = null;
@@ -28,26 +27,6 @@ public class AuthenticationUtil {
             close(con, myStmt, myRs);
         }
         return false;
-    }
-
-    private static void close(Connection myConn, Statement myStmt, ResultSet myRs) {
-
-        try {
-            if (myRs != null) {
-                myRs.close();
-            }
-
-            if (myStmt != null) {
-                myStmt.close();
-            }
-
-            if (myConn != null) {
-                myConn.close();   // doesn't really close it ... just puts back in connection pool
-            }
-        }
-        catch (Exception exc) {
-            exc.printStackTrace();
-        }
     }
 }
 
