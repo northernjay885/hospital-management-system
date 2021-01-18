@@ -7,7 +7,7 @@ CREATE DATABASE hospital_management;
 USE hospital_management;
 
 CREATE TABLE `admin` (
-    `id` INTEGER NOT NULL,
+    `username` VARCHAR(255) NOT NULL,
     `password` VARCHAR(255) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 

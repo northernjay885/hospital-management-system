@@ -3,7 +3,7 @@ package org.northernjay.hospital_management_system;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class databaseConn {
+public class DatabaseConn {
 
     private static Connection con;
     public static Connection getCon() throws ClassNotFoundException {
