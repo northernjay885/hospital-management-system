@@ -29,9 +29,9 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
 
         if (AuthenticationUtil.isValid(username, password)) {
-
+            System.out.println("Authentication succeeded");
         } else {
-
+            System.out.println("Authentication Failed");
         }
     }
 

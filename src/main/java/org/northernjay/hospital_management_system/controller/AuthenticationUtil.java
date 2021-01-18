@@ -13,17 +13,17 @@ public class AuthenticationUtil {
         ResultSet myRs = null;
         try {
             con = DatabaseConn.getCon();
-            String sql = "SELECT * FROM admin WHERE username=" + username;
+            String sql = String.format("SELECT * FROM admin WHERE username = '%s'", username);
             myStmt = con.createStatement();
             myRs = myStmt.executeQuery(sql);
-
-            String realPassword = myRs.getString("password");
-            if (realPassword.equals(password)) {
-                return true;
+            if (myRs.next()) {
+                String realPassword = myRs.getString("password");
+                if (realPassword.equals(password)) {
+                    return true;
+                }
             }
-
         } catch (Exception e) {
-            System.out.println("Database connection error");
+            System.out.println(e.getMessage());
         } finally {
             close(con, myStmt, myRs);
         }
