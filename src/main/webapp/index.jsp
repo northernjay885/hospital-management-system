@@ -8,6 +8,10 @@
 <h1><%= "Hospital Management System" %>
 </h1>
 <br/>
-<a href="login">Hello Servlet</a>
+    <form action="login" method="POST">
+        Username: <input type="text" name="username"/><br><br>
+        Password: <input type="password" name="password"/><br><br>
+        <input type="submit" value="login"/>
+    </form>
 </body>
 </html>
