@@ -22,6 +22,8 @@ dependencies {
     compileOnly('javax.mvc:javax.mvc-api:1.0.0')
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.16'
 
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
