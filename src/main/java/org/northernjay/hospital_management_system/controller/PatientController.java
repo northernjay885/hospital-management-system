@@ -76,7 +76,7 @@ public class PatientController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("patientId"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String patientType = request.getParameter("patient_type");
+        String patientType = request.getParameter("patientType");
 
         // create a new patient object
         Patient thePatient = Patient.builder()
