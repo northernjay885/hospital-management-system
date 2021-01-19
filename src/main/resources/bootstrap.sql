@@ -1,8 +1,8 @@
-INSERT INTO patient (id, firstname, lastname, inpatient) VALUES (1, 'Jack', 'Gabriel', true);
+INSERT INTO patient (id, firstname, lastname, patient_type) VALUES (1, 'Jack', 'Gabriel', 'IN');
 
-INSERT INTO patient (id, firstname, lastname, inpatient) VALUES (2, 'Martin', 'King', false);
+INSERT INTO patient (id, firstname, lastname, patient_type) VALUES (2, 'Martin', 'King', 'OUT');
 
-INSERT INTO patient (id, firstname, lastname, inpatient) VALUES (3, 'Bob', 'Dylan', true);
+INSERT INTO patient (id, firstname, lastname, patient_type) VALUES (3, 'Bob', 'Dylan', 'IN');
 
 INSERT INTO lab_report (id, patient_id, name, date) VALUES (1, 2, 'Typhus Fever', '2020-12-23 12:00:01');
 

@@ -1,6 +1,7 @@
 package org.northernjay.hospital_management_system.utils;
 
 import org.northernjay.hospital_management_system.model.Patient;
+import org.northernjay.hospital_management_system.model.PatientType;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -31,14 +32,14 @@ public class PatientUtil extends DatabaseUtil {
                 int id = myRs.getInt("id");
                 String firstName = myRs.getString("firstname");
                 String lastName = myRs.getString("lastname");
-                Boolean inpatient = myRs.getBoolean("inpatient");
+                String patientType = myRs.getString("patient_type");
 
                 // create new patient object
                 Patient tempPatient = Patient.builder()
                         .id(id)
                         .firstName(firstName)
                         .lastName(lastName)
-                        .inpatient(inpatient)
+                        .patientType(PatientType.valueOf(patientType))
                         .build();
 
                 // add it to the list of patients
@@ -79,13 +80,13 @@ public class PatientUtil extends DatabaseUtil {
                 int id = myRs.getInt("id");
                 String firstName = myRs.getString("firstname");
                 String lastName = myRs.getString("lastname");
-                Boolean inpatient = myRs.getBoolean("inpatient");
+                String patientType = myRs.getString("patient_type");
                 // use the patientId during construction
                 thePatient = Patient.builder()
                         .id(id)
                         .firstName(firstName)
                         .lastName(lastName)
-                        .inpatient(inpatient)
+                        .patientType(PatientType.valueOf(patientType))
                         .build();
             }
             else {
@@ -105,7 +106,7 @@ public class PatientUtil extends DatabaseUtil {
         try {
             // get db connection
             myConn = DatabaseConn.getCon();
-            String sql = "INSERT INTO patient (firstname, lastname, inpatient) "
+            String sql = "INSERT INTO patient (firstname, lastname, patient_type) "
                     + "VALUES (?, ?, ?)";
 
             // prepare statement
@@ -114,7 +115,7 @@ public class PatientUtil extends DatabaseUtil {
             // set params
             myStmt.setString(1, thePatient.getFirstName());
             myStmt.setString(2, thePatient.getLastName());
-            myStmt.setBoolean(3, thePatient.getInpatient());
+            myStmt.setString(3, thePatient.getPatientType().toString());
 
             myStmt.execute();
         } catch (Exception e) {
@@ -135,7 +136,7 @@ public class PatientUtil extends DatabaseUtil {
 
             // create SQL update statement
             String sql = "UPDATE patient "
-                    + "SET firstname=?, lastname=?, inpatient=? "
+                    + "SET firstname=?, lastname=?, patient_type=? "
                     + "WHERE id=?";
 
             // prepare statement
@@ -144,7 +145,7 @@ public class PatientUtil extends DatabaseUtil {
             // set params
             myStmt.setString(1, thePatient.getFirstName());
             myStmt.setString(2, thePatient.getLastName());
-            myStmt.setBoolean(3, thePatient.getInpatient());
+            myStmt.setString(3, thePatient.getPatientType().toString());
             myStmt.setInt(4, thePatient.getId());
 
             // execute SQL statement
@@ -178,6 +179,9 @@ public class PatientUtil extends DatabaseUtil {
 
             // execute sql statement
             myStmt.execute();
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
         }
         finally {
             // clean up JDBC code

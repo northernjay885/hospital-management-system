@@ -1,6 +1,7 @@
 package org.northernjay.hospital_management_system.controller;
 
 import org.northernjay.hospital_management_system.model.Patient;
+import org.northernjay.hospital_management_system.model.PatientType;
 import org.northernjay.hospital_management_system.utils.PatientUtil;
 
 import javax.servlet.RequestDispatcher;
@@ -56,8 +57,7 @@ public class PatientController extends HttpServlet {
         }
     }
 
-    private void deletePatient(HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
+    private void deletePatient(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         // read patient id from form data
         String thePatientId = request.getParameter("patientId");
@@ -76,14 +76,14 @@ public class PatientController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("patientId"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        Boolean inpatient = Boolean.parseBoolean(request.getParameter("inpatient"));
+        String patientType = request.getParameter("patient_type");
 
         // create a new patient object
         Patient thePatient = Patient.builder()
                 .id(id)
                 .firstName(firstName)
                 .lastName(lastName)
-                .inpatient(inpatient)
+                .patientType(PatientType.valueOf(patientType))
                 .build();
 
         // perform update on database
@@ -117,13 +117,13 @@ public class PatientController extends HttpServlet {
         // read patient info from form data
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        Boolean inpatient = Boolean.parseBoolean(request.getParameter("inpatient"));
+        String patientType = request.getParameter("patient_type");
 
         // create a new patient object
         Patient thePatient = Patient.builder()
                 .firstName(firstName)
                 .lastName(lastName)
-                .inpatient(inpatient)
+                .patientType(PatientType.valueOf(patientType))
                 .build();
 
         // add the patient to the database

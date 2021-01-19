@@ -44,20 +44,20 @@
                 <!-- set up a link for each patient -->
                 <c:url var="tempLink" value="patient">
                     <c:param name="command" value="LOAD" />
-                    <c:param name="studentId" value="${tempPatient.id}" />
+                    <c:param name="patientId" value="${tempPatient.id}" />
                 </c:url>
 
-                <!--  set up a link to delete a student -->
+                <!--  set up a link to delete a patient -->
                 <c:url var="deleteLink" value="patient">
                     <c:param name="command" value="DELETE" />
-                    <c:param name="studentId" value="${tempPatient.id}" />
+                    <c:param name="patientId" value="${tempPatient.id}" />
                 </c:url>
 
                 <tr>
                     <td> ${tempPatient.id} </td>
                     <td> ${tempPatient.firstName} </td>
                     <td> ${tempPatient.lastName} </td>
-                    <td> ${tempPatient.inpatient} </td>
+                    <td> ${tempPatient.patientType} </td>
                     <td>
                         <a href="${tempLink}">Update</a>
                         |

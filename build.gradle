@@ -22,7 +22,7 @@ dependencies {
     compileOnly('javax.mvc:javax.mvc-api:1.0.0')
     implementation('javax.servlet:jstl:1.2')
 
-    implementation (group: 'mysql', name: 'mysql-connector-java', version: '8.0.23')
+    implementation (group: 'mysql', name: 'mysql-connector-java', version: '8.0.22')
 
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
