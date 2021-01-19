@@ -2,7 +2,6 @@ package org.northernjay.hospital_management_system.utils;
 
 import org.northernjay.hospital_management_system.model.LabReport;
 
-import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.Timestamp;
 import java.util.ArrayList;

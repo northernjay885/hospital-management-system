@@ -12,7 +12,7 @@ CREATE TABLE `admin` (
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 CREATE TABLE `patient`(
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `firstname` VARCHAR(255) NOT NULL,
     `lastname` VARCHAR(255) NOT NULL,
     `inpatient` BOOLEAN NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE `patient`(
 ) ENGINE =InnoDB DEFAULT CHARSET = latin1;
 
 CREATE TABLE `lab_report`(
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `patient_id` INTEGER NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `date` TIMESTAMP NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `lab_report`(
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 CREATE TABLE `billing` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `patient_id` INTEGER NOT NULL,
     `price` DECIMAL(15, 2) NOT NULL,
