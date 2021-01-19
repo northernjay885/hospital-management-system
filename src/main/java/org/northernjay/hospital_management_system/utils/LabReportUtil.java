@@ -3,6 +3,7 @@ package org.northernjay.hospital_management_system.utils;
 import org.northernjay.hospital_management_system.model.LabReport;
 
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,8 +96,31 @@ public class LabReportUtil extends DatabaseUtil {
             return theLabReport;
         }
         finally {
-            // clean up JDBC objects
             close(myConn, myStmt, myRs);
+        }
+    }
+
+    public void addLabReport(LabReport theLabReport) throws Exception {
+        PreparedStatement myStmt = null;
+        try {
+            // get db connection
+            myConn = DatabaseConn.getCon();
+            String sql = "INSERT INTO lab_report (patient_id, name, date) "
+                    + "VALUES (?, ?, ?)";
+
+            // prepare statement
+            myStmt = myConn.prepareStatement(sql);
+
+            // set params
+            myStmt.setInt(1, theLabReport.getPatientId());
+            myStmt.setString(2, theLabReport.getName());
+            myStmt.setTimestamp(3, theLabReport.getDate());
+
+            myStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            close(myConn, myStmt, null);
         }
     }
 
@@ -107,6 +131,11 @@ public class LabReportUtil extends DatabaseUtil {
         try {
             // get db connection
             myConn = DatabaseConn.getCon();
+
+            // get record if already exists
+            String getSql = "SELECT * FROM lab_report WHERE id=" + theLabReport.getId();
+            Statement getStmt = myConn.createStatement();
+            myRs = getStmt.executeQuery(getSql);
 
             // create SQL update statement
             String sql = "UPDATE lab_report "
@@ -121,11 +150,9 @@ public class LabReportUtil extends DatabaseUtil {
             myStmt.setTimestamp(2, theLabReport.getDate());
             myStmt.setInt(3, theLabReport.getId());
 
-            // execute SQL statement
             myStmt.execute();
         }
         finally {
-            // clean up JDBC objects
             close(myConn, myStmt, null);
         }
     }
@@ -150,11 +177,9 @@ public class LabReportUtil extends DatabaseUtil {
             // set params
             myStmt.setInt(1, labReportId);
 
-            // execute sql statement
             myStmt.execute();
         }
         finally {
-            // clean up JDBC code
             close(myConn, myStmt, null);
         }
     }
