@@ -3,6 +3,7 @@ package org.northernjay.hospital_management_system.controller;
 import org.northernjay.hospital_management_system.utils.AuthenticationUtil;
 
 import java.io.*;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -31,7 +32,7 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("password");
 
         if (AuthenticationUtil.isValid(username, password)) {
-            System.out.println("Authentication succeeded");
+            response.sendRedirect(request.getContextPath() + "/patient");
         } else {
             System.out.println("Authentication Failed");
         }

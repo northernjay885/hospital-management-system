@@ -105,6 +105,31 @@ public class BillingUtil extends DatabaseUtil {
         }
     }
 
+    public void addBilling(Billing theBilling) throws Exception {
+        PreparedStatement myStmt = null;
+        try {
+            // get db connection
+            myConn = DatabaseConn.getCon();
+            String sql = "INSERT INTO billing (name, patient_id, price, date) "
+                    + "VALUES (?, ?, ?, ?)";
+
+            // prepare statement
+            myStmt = myConn.prepareStatement(sql);
+
+            // set params
+            myStmt.setString(1, theBilling.getName());
+            myStmt.setInt(2, theBilling.getPatientId());
+            myStmt.setBigDecimal(3, theBilling.getPrice());
+            myStmt.setTimestamp(4, theBilling.getDate());
+
+            myStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            close(myConn, myStmt, null);
+        }
+    }
+
     public void updateBilling(Billing theBilling) throws Exception {
 
         PreparedStatement myStmt = null;

@@ -100,6 +100,31 @@ public class PatientUtil extends DatabaseUtil {
         }
     }
 
+    public void addPatient(Patient thePatient) throws Exception {
+        PreparedStatement myStmt = null;
+        try {
+            // get db connection
+            myConn = DatabaseConn.getCon();
+            String sql = "INSERT INTO patient (firstname, lastname, inpatient) "
+                    + "VALUES (?, ?, ?)";
+
+            // prepare statement
+            myStmt = myConn.prepareStatement(sql);
+
+            // set params
+            myStmt.setString(1, thePatient.getFirstName());
+            myStmt.setString(2, thePatient.getLastName());
+            myStmt.setBoolean(3, thePatient.getInpatient());
+
+            myStmt.execute();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            close(myConn, myStmt, null);
+        }
+    }
+
+
     public void updatePatient(Patient thePatient) throws Exception {
 
         PreparedStatement myStmt = null;
